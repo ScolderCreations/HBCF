@@ -1,0 +1,2 @@
+# HBCF
+HitBox Collection Format
