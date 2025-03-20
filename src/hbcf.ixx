@@ -33,11 +33,13 @@ export vector<vector<int>> GetHitbox_Vector(string f)
             if (f[1+i] == '(') {
 	            if (word.size() > 0)
 	            {
-		            current.push_back(vtoi(word, 0, word.size()));
+		            collection.push_back(current);
 	            }
-	            else
+	            else if ("s".find(f[1+i]) != string::npos) {
+                    break;
+	            } else
 	            {
-		            cerr << "Hitbox Collection found comma before data for some reason...";
+		            cerr << "Hitbox Collection failed";
 	            }
 				
             }
