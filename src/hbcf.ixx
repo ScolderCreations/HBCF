@@ -27,20 +27,27 @@ export vector<vector<int>> GetHitbox_Vector(string f)
 	const string identifiers = "RTC"; // this is the current list of identifiers, subject to change (or be obsolete entirely given how useless it is)
 	for (int i = 0; i < f.length(); i++ ) {
         switch (f[i]) {
-        case ',':
-            if (f[i-1] == ']') {
-	            if (current.size() > 0)
-	            {
-		            collection.push_back(current);
-					current.clear();
-	            }
-			}
-	        else if (numerals.find(f[i-1]) != string::npos) {
-                	current.push_back(vtoi(word, word.begin(), word.end()));
+		case ';':
+			if (current.size() > 0)
+	        {
+		        if (word.size() > 0) {
+					current.push_back(vtoi(word, word.begin(), word.end()))
 					word.clear()
+				}
+				collection.push_back(current);
+				current.clear();
+	        }
+			else
+			{
+				cerr << "Hitbox Collection failed: Unexpected semicolon"
+			}
+        case ',':
+            if (word.size() > 0) {
+				current.push_back(vtoi(word, word.begin(), word.end()));
+				word.clear()
 	        }
 			else {
-				cerr << "Hitbox Collection failed: Comma placement is uninterpretable";
+				cerr << "Hitbox Collection failed: Unexpected comma";
 	    	}
 			break;
         default:
