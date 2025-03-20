@@ -5,7 +5,7 @@ import <vector>
 using namespace std;
 
 int main() {
-  ifstream in("FileReadExample.cpp");
+  ifstream in("example/example.txt");
   string example((istreambuf_iterator<char>(in)), 
     istreambuf_iterator<char>());
   cout << GetHitbox_Vector(example.c_str())
