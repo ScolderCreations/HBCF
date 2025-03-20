@@ -25,21 +25,21 @@ export vector<vector<int>> GetHitbox_Vector(string f)
     vector<char> word;
 	for (int i = 0; i < f.length(); i++ ) {
         switch (f[i]) {
-        case "R":
+        case 'R':
             current[0] = 1;
-        case "T":
+        case 'T':
             current[0] = 2;
-        case ",":
-            switch(f[i+1]){
-				case "(": 
-                    if (word.size() > 0) {
-                        current.push_back(vtoi(word, 0, word.size()));
-                    } else
-                    {
-                        cerr << "Hitbox Collection found comma before data for some reason...";
-                    }
-				default:
-                    break;
+        case ',':
+            if (f[1+i] == '(') {
+	            if (word.size() > 0)
+	            {
+		            current.push_back(vtoi(word, 0, word.size()));
+	            }
+	            else
+	            {
+		            cerr << "Hitbox Collection found comma before data for some reason...";
+	            }
+				
             }
         default:
             break;
