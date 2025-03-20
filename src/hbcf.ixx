@@ -24,7 +24,7 @@ export vector<vector<int>> GetHitbox_Vector(string f)
     vector<int> current;
     vector<char> word;
 	const string numerals = "-.0123456789";
-	const string identifiers = "RTC"; // this is the current list
+	const string identifiers = "RTC"; // this is the current list of identifiers, subject to change (or be obsolete entirely given how useless it is)
 	for (int i = 0; i < f.length(); i++ ) {
         switch (f[i]) {
         case ',':
