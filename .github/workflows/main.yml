@@ -1,0 +1,15 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test module
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: egor-tensin/setup-gcc@v1
+    - name: Test module
+      run: |
+        gcc test.cpp -o test.exe
+        test.exe
