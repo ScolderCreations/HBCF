@@ -23,28 +23,34 @@ export vector<vector<int>> GetHitbox_Vector(string f)
 	vector<vector<int>> collection;
     vector<int> current;
     vector<char> word;
+	const string numerals = "-.0123456789"
 	for (int i = 0; i < f.length(); i++ ) {
         switch (f[i]) {
         case 'R':
             current[0] = 1;
+			break;
         case 'T':
             current[0] = 2;
+			break;
         case ',':
-            if (f[1+i] == '(') {
-	            if (word.size() > 0)
+            if (f[i-1] == ')') {
+	            if (current.size() > 0)
 	            {
 		            collection.push_back(current);
 	            }
-	            else if ("s".find(f[1+i]) != string::npos) {
-                    break;
-	            } else
-	            {
-		            cerr << "Hitbox Collection failed";
-	            }
-				
-            }
+			}
+	        else if (numerals.find(f[i-1]) != string::npos) {
+                current.push_back(vtoi(word, 0, word.size()));
+	        }
+			else {
+				cerr << "Hitbox Collection failed";
+	    	}
+			break;
         default:
-            break;
+            if (numerals.find(f[i]) != string::npos) {
+				word.push_back(f[i]);
+			}
+			break;
         }
     }
     return collection;
