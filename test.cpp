@@ -9,4 +9,5 @@ int main() {
   string example((istreambuf_iterator<char>(in)), 
     istreambuf_iterator<char>());
   cout << GetHitbox_Vector(example.c_str())
+  return 1
 }
