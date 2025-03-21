@@ -6,7 +6,7 @@ import hbcf;
 using namespace std;
 
 int main() {
-  ifstream fin("message.txt", ios::in | ios::binary);
+  ifstream fin("./example/example.txt", ios::in | ios::binary);
     string data, line;
     if (fin.is_open()) {
         while (getline(fin, line)) {

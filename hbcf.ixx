@@ -1,8 +1,8 @@
 export module hbcf;
-#include <string>
-#include <iostream>
-#include <vector>
-#include <math.h>
+import <string>;
+import <iostream>;
+import <vector>;
+import <math.h>;
 
 using namespace std;
 
