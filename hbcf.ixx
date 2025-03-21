@@ -30,21 +30,21 @@ export vector<vector<int>> GetHitbox_Vector(string f)
 		case ';':
 			if (current.size() > 0)
 	        {
-		        if (word.size() > 0) {
-					current.push_back(vtoi(word, word.begin(), word.end()))
-					word.clear()
+				if (word.size() > 0) {
+					current.push_back(vtoi(word, word.begin(), word.end()));
+					word.clear();
 				}
 				collection.push_back(current);
 				current.clear();
 	        }
 			else
 			{
-				cerr << "Hitbox Collection failed: Unexpected semicolon"
+				cerr << "Hitbox Collection failed: Unexpected semicolon";
 			}
         case ',':
             if (word.size() > 0) {
 				current.push_back(vtoi(word, word.begin(), word.end()));
-				word.clear()
+				word.clear();
 	        }
 			else {
 				cerr << "Hitbox Collection failed: Unexpected comma";

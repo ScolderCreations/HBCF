@@ -1,6 +1,6 @@
 #include <fstream>
 #include <iostream>
-#include <vector>
+#include <string>
 import hbcf;
 
 using namespace std;
@@ -14,6 +14,6 @@ int main() {
         }
         fin.close();
     }
-  cout << GetHitbox_Vector(data.c_str());
+  GetHitbox_Vector(data.c_str());
   return 1;
 }
