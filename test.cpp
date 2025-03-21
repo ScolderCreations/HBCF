@@ -1,7 +1,8 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-import hbcf;
+#include <vector>
+import HBCF;
 
 using namespace std;
 
@@ -14,6 +15,7 @@ int main() {
         }
         fin.close();
     }
-  GetHitbox_Vector(data.c_str());
+	const vector<vector<int>> res = get_hitbox_vector(data.c_str());
+    cout << res[0][1];
   return 1;
 }

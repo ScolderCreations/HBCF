@@ -1,10 +1,13 @@
-export module hbcf;
+module;
+
 import <string>;
 import <iostream>;
 import <vector>;
 import <math.h>;
 
 using namespace std;
+
+export module HBCF;
 
 static int vtoi(vector<char> vec, int beg, int end) // vector to int
 {
@@ -18,7 +21,7 @@ static int vtoi(vector<char> vec, int beg, int end) // vector to int
     return ret;
 }
 
-export vector<vector<int>> GetHitbox_Vector(string f)
+export vector<vector<int>> get_hitbox_vector(string f)
 {
 	vector<vector<int>> collection;
     vector<int> current;
@@ -53,8 +56,8 @@ export vector<vector<int>> GetHitbox_Vector(string f)
         default:
             if (numerals.find(f[i]) != string::npos) {
 				word.push_back(f[i]);
-			} else if (identifiers.find(f[i])!= string::npos) {
-				word[0] = identifiers.find(f[i]);
+			} else if (identifiers.find(f[i]) != string::npos) {
+				word[0] = static_cast<int>(identifiers.find(f[i], 0));
 			}
 			break;
         }
