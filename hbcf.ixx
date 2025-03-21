@@ -6,7 +6,7 @@ export module hbcf;
 
 using namespace std;
 
-int vtoi(vector<char> vec, int beg, int end) // vector to int
+static int vtoi(vector<char> vec, int beg, int end) // vector to int
 {
     int ret = 0;
     int mult = pow(10, (end - beg));
@@ -31,7 +31,7 @@ export vector<vector<int>> GetHitbox_Vector(string f)
 			if (current.size() > 0)
 	        {
 				if (word.size() > 0) {
-					current.push_back(vtoi(word, word.begin(), word.end()));
+					current.push_back(vtoi(word, 0, word.size()));
 					word.clear();
 				}
 				collection.push_back(current);
@@ -43,7 +43,7 @@ export vector<vector<int>> GetHitbox_Vector(string f)
 			}
         case ',':
             if (word.size() > 0) {
-				current.push_back(vtoi(word, word.begin(), word.end()));
+				current.push_back(vtoi(word, 0, word.size()));
 				word.clear();
 	        }
 			else {
