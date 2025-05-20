@@ -1,66 +1,60 @@
 module;
-
-import <string>;
-import <iostream>;
-import <vector>;
-import <math.h>;
+#include <vector>
 
 using namespace std;
+const string numerals = "-.0123456789";
 
-export module HBCF;
-
-static int vtoi(vector<char> vec, int beg, int end) // vector to int
+int vctoi(vector<char> vec) // vector to int
 {
-    int ret = 0;
-    int mult = pow(10, (end - beg));
-
-    for (int i = beg; i <= end; i++) {
-        ret += (vec[i] - '0') * mult;
-        mult /= 10;
-    }
-    return ret;
+	string s(vec.begin(), vec.end());
+	return atoi(s.c_str());
 }
-
-export vector<vector<int>> get_hitbox_vector(string f)
-{
-	vector<vector<int>> collection;
-    vector<int> current;
-    vector<char> word;
-	const string numerals = "-.0123456789";
-	const string identifiers = "RTC"; // this is the current list of identifiers, subject to change (or be obsolete entirely given how useless it is)
-	for (int i = 0; i < f.length(); i++ ) {
-        switch (f[i]) {
+// converts to vector of vectors of doubles (vector of objects with int data)
+export void get_hitbox_vector(string f, vector<vector<double>> *collection) { // input file data
+	collection->clear();
+	vector<double> current;
+	vector<char> word;
+	for (int i = 0; i < f.length(); i++) {
+		switch (f[i]) {
 		case ';':
 			if (current.size() > 0)
-	        {
+			{
 				if (word.size() > 0) {
-					current.push_back(vtoi(word, 0, word.size()));
+					current.push_back(static_cast<double>(vctoi(word)));
 					word.clear();
 				}
-				collection.push_back(current);
+				collection->push_back(current);
 				current.clear();
-	        }
-			else
-			{
-				cerr << "Hitbox Collection failed: Unexpected semicolon";
+			} else {
+				throw "Hitbox Collection failed: Unexpected semicolon";
 			}
-        case ',':
-            if (word.size() > 0) {
-				current.push_back(vtoi(word, 0, word.size()));
+			break;
+		case ',':
+			if (word.size() > 0) {
+				current.push_back(static_cast<double>(vctoi(word)));
 				word.clear();
-	        }
-			else {
-				cerr << "Hitbox Collection failed: Unexpected comma";
-	    	}
-			break;
-        default:
-            if (numerals.find(f[i]) != string::npos) {
-				word.push_back(f[i]);
-			} else if (identifiers.find(f[i]) != string::npos) {
-				word[0] = static_cast<int>(identifiers.find(f[i], 0));
+			} else {
+				throw "Hitbox Collection failed: Unexpected comma";
 			}
 			break;
-        }
-    }
-    return collection;
+		default:
+			word.push_back(f[i]);
+			break;
+		}
+	}
 };
+
+export string get_hitbox_text(vector<vector<int>> v) {
+	string f;
+	for (int i = 0; i < v.size(); i++) {
+		for (int n = 0; n < v[i].size(); n++) {
+			if (n == 0) {
+				f.append(to_string(v[i][n]));
+			} else {
+				f.append(", " + to_string(v[i][n]));
+			}
+		}
+		f.append(" ; ");
+	}
+	return f;
+}
