@@ -20,4 +20,4 @@ This is pretty simple. An object ends with a semicolon, then the next object sta
 
 ## Usage
 
-The `gethitbox_vector()` function possesses one argument, which should be a char array.
+The `get_hitbox_vector()` function possesses one argument, which should be a char array.
